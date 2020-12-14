@@ -97,7 +97,7 @@ export default function (opt) {
 
         // limit requested hostnames to 63 characters
         console.log('/parts--------------------------------->', parts);
-        if (! /^(?:[a-z0-9][a-z0-9\-]{4,63}[a-z0-9]|[a-z0-9]{4,63})$/.test(reqId)) {
+        if (false && ! /^(?:[a-z0-9][a-z0-9\-]{4,63}[a-z0-9]|[a-z0-9]{4,63})$/.test(reqId)) {
             const msg = 'Invalid subdomain. Subdomains must be lowercase and between 4 and 63 alphanumeric characters.';
             ctx.status = 403;
             ctx.body = {
@@ -109,7 +109,7 @@ export default function (opt) {
 
         console.log('making new client with id %s', reqId);
         const info = await manager.newClient(reqId);
-
+        console.log('----->',ctx.request.host)
         const url = schema + '://' + info.id + '.' + ctx.request.host;
         info.url = url;
         ctx.body = info;
