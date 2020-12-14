@@ -31,7 +31,7 @@ const argv = optimist
         describe: 'maximum number of tcp sockets each client is allowed to establish at one time (the tunnels)'
     })
     .options('landing', {
-        default: lt,
+        default: 'lt.gridpe.com',
         describe: 'maximum number of tcp sockets each client is allowed to establish at one time (the tunnels)'
     })
     .argv;
