@@ -103,6 +103,7 @@ export default function (opt) {
             ctx.body = {
                 message: msg,
             };
+            console.log('--->', reqId,msg)
             return;
         }
 
