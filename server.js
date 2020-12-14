@@ -12,7 +12,7 @@ const debug = Debug('localtunnel:server');
 
 export default function(opt) {
     opt = opt || {};
-
+    console.log('--------------> options',opt)
     const validHosts = (opt.domain) ? [opt.domain] : undefined;
     const myTldjs = tldjs.fromUserSettings({ validHosts });
     const landingPage = opt.landing || 'https://localtunnel.github.io/www/';
