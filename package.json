@@ -11,7 +11,7 @@
   "scripts": {
     "build": "build-esm",
     "test": "mocha --check-leaks --require esm './**/*.test.js'",
-    "start": "yarn build; cd dist; node ./bin/server --domain lt.gridpe.com --port 5001 --secure",
+    "start": "yarn build; cd dist; node ./bin/server --domain lt.gridpe.com --port 5001",
     "dev": "node-dev bin/server --port 3000"
   },
   "dependencies": {
