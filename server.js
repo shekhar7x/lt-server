@@ -130,6 +130,7 @@ export default function (opt) {
         }
 
         const clientId = GetClientIdFromHostname(hostname);
+        console.log('-->',clientId)
         if (!clientId) {
             appCallback(req, res);
             return;
@@ -137,6 +138,7 @@ export default function (opt) {
 
         const client = manager.getClient(clientId);
         if (!client) {
+            console.log('---------->', 404)
             res.statusCode = 404;
             res.end('404');
             return;
