@@ -10,9 +10,9 @@ import ClientManager from './lib/ClientManager';
 
 const debug = Debug('localtunnel:server');
 
-export default function(opt) {
+export default function (opt) {
     opt = opt || {};
-    console.log('--------------> options',opt)
+    console.log('--------------> options', opt)
     const validHosts = (opt.domain) ? [opt.domain] : undefined;
     const myTldjs = tldjs.fromUserSettings({ validHosts });
     const landingPage = opt.landing || 'https://localtunnel.github.io/www/';
@@ -56,7 +56,7 @@ export default function(opt) {
     // root endpoint
     app.use(async (ctx, next) => {
         const path = ctx.request.path;
-
+        console.log('/root--------------------------->')
         // skip anything not on the root path
         if (path !== '/') {
             await next();
@@ -82,6 +82,7 @@ export default function(opt) {
     // anything after the / path is a request for a specific client name
     // This is a backwards compat feature
     app.use(async (ctx, next) => {
+        console.log('/path--------------------------->')
         const parts = ctx.request.path.split('/');
 
         // any request with several layers of paths is not allowed
@@ -95,6 +96,7 @@ export default function(opt) {
         const reqId = parts[1];
 
         // limit requested hostnames to 63 characters
+        console.log('/parts--------------------------------->', parts);
         if (! /^(?:[a-z0-9][a-z0-9\-]{4,63}[a-z0-9]|[a-z0-9]{4,63})$/.test(reqId)) {
             const msg = 'Invalid subdomain. Subdomains must be lowercase and between 4 and 63 alphanumeric characters.';
             ctx.status = 403;
@@ -104,7 +106,7 @@ export default function(opt) {
             return;
         }
 
-        debug('making new client with id %s', reqId);
+        console.log('making new client with id %s', reqId);
         const info = await manager.newClient(reqId);
 
         const url = schema + '://' + info.id + '.' + ctx.request.host;
