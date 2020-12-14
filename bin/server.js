@@ -30,6 +30,10 @@ const argv = optimist
         default: 10,
         describe: 'maximum number of tcp sockets each client is allowed to establish at one time (the tunnels)'
     })
+    .options('landing', {
+        default: lt,
+        describe: 'maximum number of tcp sockets each client is allowed to establish at one time (the tunnels)'
+    })
     .argv;
 
 if (argv.help) {
@@ -41,10 +45,11 @@ const server = CreateServer({
     max_tcp_sockets: argv['max-sockets'],
     secure: argv.secure,
     domain: argv.domain,
+    landing: argv.landing,
 });
 
 server.listen(argv.port, argv.address, () => {
-    debug('server listening on port: %d', server.address().port);
+    console.info('server listening on port: %d', server.address().port);
 });
 
 process.on('SIGINT', () => {
