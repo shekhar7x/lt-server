@@ -50,8 +50,8 @@ export default function(opt) {
         };
     });
 
-    app.use('/localtunnel',router.routes());
-    app.use('/localtunnel',router.allowedMethods());
+    app.use(router.routes());
+    app.use(router.allowedMethods());
 
     // root endpoint
     app.use(async (ctx, next) => {
