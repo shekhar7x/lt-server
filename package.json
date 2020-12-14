@@ -6,7 +6,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/localtunnel/server.git"
+    "url": "git://github.com/shekhar7x/server.git"
+  },
+  "scripts": {
+    "build": "build-esm",
+    "test": "mocha --check-leaks --require esm './**/*.test.js'",
+    "start": "yarn build; cd dist; node ./bin/server --domain lt.gridpe.com --port 5001 --secure",
+    "dev": "node-dev bin/server --port 3000"
   },
   "dependencies": {
     "book": "1.3.3",
@@ -26,11 +32,5 @@
     "node-dev": "3.1.3",
     "supertest": "3.1.0",
     "ws": "5.1.1"
-  },
-  "scripts": {
-    "build": "build-esm",
-    "test": "mocha --check-leaks --require esm './**/*.test.js'",
-    "start": "./bin/server",
-    "dev": "node-dev bin/server --port 3000"
   }
 }
