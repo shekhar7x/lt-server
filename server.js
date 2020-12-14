@@ -68,7 +68,7 @@ export default function (opt) {
             const reqId = hri.random();
             debug('making new client with id %s', reqId);
             const info = await manager.newClient(reqId);
-            console.log('->>---->',ctx.request)
+            console.log('->>---->',ctx.request.host)
             const url = schema + '://' + info.id + '.' + ctx.request.host;
             info.url = url;
             ctx.body = info;
@@ -109,7 +109,7 @@ export default function (opt) {
 
         console.log('making new client with id %s', reqId);
         const info = await manager.newClient(reqId);
-        console.log('----->',ctx.request)
+        console.log('----->',ctx.request.host)
         const url = schema + '://' + info.id + '.' + ctx.request.host;
         info.url = url;
         ctx.body = info;
